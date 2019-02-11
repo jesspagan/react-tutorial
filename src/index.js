@@ -52,7 +52,8 @@ class Game extends React.Component {
       ],
       xIsNext: true,
       stepNumber: 0,
-      selectedStep: null
+      selectedStep: null,
+      sortDescending: false
     };
   }
 
@@ -84,6 +85,10 @@ class Game extends React.Component {
     });
   }
 
+  toggleSort() {
+    this.setState({ sortDescending: !this.state.sortDescending });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -107,12 +112,23 @@ class Game extends React.Component {
       );
     });
 
+    let sortBy = 'Sort history by: ';
+    if (this.state.sortDescending) {
+      sortBy += 'Ascending';
+      moves.sort((element1, element2) => {
+        return element2.key - element1.key;
+      });
+    } else {
+      sortBy += 'Descending';
+    }
+
     let status;
     if (winner) {
       status = 'Winner ' + winner;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
     return (
       <div className='game'>
         <div className='game-board'>
@@ -120,6 +136,7 @@ class Game extends React.Component {
         </div>
         <div className='game-info'>
           <div>{status}</div>
+          <button onClick={() => this.toggleSort()}>{sortBy}</button>
           <ol>{moves}</ol>
         </div>
       </div>
