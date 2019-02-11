@@ -134,6 +134,8 @@ class Game extends React.Component {
       current.squares[a] = { ...current.squares[a], winner: true };
       current.squares[b] = { ...current.squares[b], winner: true };
       current.squares[c] = { ...current.squares[c], winner: true };
+    } else if (this.state.stepNumber >= 9) {
+      status = 'It is a draw!';
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
