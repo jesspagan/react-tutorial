@@ -24,7 +24,6 @@ ul {
   float: left;
   font-size: 24px;
   font-weight: bold;
-  line-height: 34px;
   height: 34px;
   margin-right: -1px;
   margin-top: -1px;
@@ -52,4 +51,8 @@ ul {
 
 .button-clicked {
   font-weight: bold;
+}
+
+.winner {
+  border: solid 4px green;
 }
